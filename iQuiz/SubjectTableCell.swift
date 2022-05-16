@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 class SubjectTableCell: UITableViewCell {
-    
     @IBOutlet weak var subjectImage: UIImageView!
     @IBOutlet weak var subject: UILabel!
     @IBOutlet weak var subjectDescription: UILabel!
