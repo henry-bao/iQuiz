@@ -16,6 +16,7 @@
 		BA762790282D0E6E00088B52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA76278F282D0E6E00088B52 /* Assets.xcassets */; };
 		BA762793282D0E6E00088B52 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA762791282D0E6E00088B52 /* LaunchScreen.storyboard */; };
 		BA76279B282D172C00088B52 /* SubjectTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA76279A282D172C00088B52 /* SubjectTableCell.swift */; };
+		BAA6AEE428350DB700C4C681 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA6AEE328350DB700C4C681 /* Subject.swift */; };
 		BABE547D282D9746003B5E3A /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABE547C282D9746003B5E3A /* QuestionViewController.swift */; };
 		BABE547F282D9757003B5E3A /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABE547E282D9757003B5E3A /* AnswerViewController.swift */; };
 		BABE5481282D9774003B5E3A /* FinishedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BABE5480282D9774003B5E3A /* FinishedViewController.swift */; };
@@ -33,6 +34,7 @@
 		BA762792282D0E6E00088B52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA762794282D0E6E00088B52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BA76279A282D172C00088B52 /* SubjectTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectTableCell.swift; sourceTree = "<group>"; };
+		BAA6AEE328350DB700C4C681 /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
 		BABE547C282D9746003B5E3A /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		BABE547E282D9757003B5E3A /* AnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
 		BABE5480282D9774003B5E3A /* FinishedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				BABE547E282D9757003B5E3A /* AnswerViewController.swift */,
 				BABE5480282D9774003B5E3A /* FinishedViewController.swift */,
 				BA150EED28326284009F06BD /* Question.swift */,
+				BAA6AEE328350DB700C4C681 /* Subject.swift */,
 				BA5CA19F28347D10007639D8 /* Settings.bundle */,
 			);
 			path = iQuiz;
@@ -164,6 +167,7 @@
 				BABE547D282D9746003B5E3A /* QuestionViewController.swift in Sources */,
 				BA76279B282D172C00088B52 /* SubjectTableCell.swift in Sources */,
 				BA762787282D0E6D00088B52 /* AppDelegate.swift in Sources */,
+				BAA6AEE428350DB700C4C681 /* Subject.swift in Sources */,
 				BA762789282D0E6D00088B52 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

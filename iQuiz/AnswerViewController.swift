@@ -20,10 +20,10 @@ class AnswerViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         let question = questions[questionIndex]
-        resultLabel.text = "You got the question \(selected == question.answer ? "right" : "wrong")!"
-        answerLabel.text = "The correct answer was \(question.choices[question.answer - 1])"
-        resultLabel.textColor = selected == question.answer ? UIColor.systemGreen : UIColor.systemRed
-        if selected == question.answer {
+        resultLabel.text = "You got the question \(selected == Int(question.answer) ? "right" : "wrong")!"
+        answerLabel.text = "The correct answer was \(question.choices[Int(question.answer)! - 1])"
+        resultLabel.textColor = selected == Int(question.answer) ? UIColor.systemGreen : UIColor.systemRed
+        if selected == Int(question.answer) {
             score += 1
         }
     }
