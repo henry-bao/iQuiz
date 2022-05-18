@@ -28,20 +28,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             "description": "Are you a real super heros fan? Answer these fun Marvel trivia questions!",
             "questions": [
                 Question(text: "Who is the actor for Dr.Strange", answer: 1,
-                         choices: [
-                            "Benedict Cumberbatch",
-                            "Chiwetel Ejiofor",
-                            "Michael Stuhlbarg",
-                            "Benedict Wong"
-                        ]
+                         choices: ["Benedict Cumberbatch", "Chiwetel Ejiofor", "Michael Stuhlbarg", "Benedict Wong"]
                 ),
                 Question(text: "During which war did Captain America get his superhuman abilities?", answer: 3,
-                         choices: [
-                            "Civil War",
-                            "World War I",
-                            "World War II",
-                            "The Cold War"
-                         ]
+                         choices: ["Civil War", "World War I", "World War II", "The Cold War"]
                 )
             ]
         ],
@@ -93,6 +83,4 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         vc.modalPresentationStyle = .fullScreen
         self.present(vc, animated: true, completion: nil)
     }
-    
 }
-

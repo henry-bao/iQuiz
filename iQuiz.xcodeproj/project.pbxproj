@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BA150EEE28326284009F06BD /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA150EED28326284009F06BD /* Question.swift */; };
+		BA5CA1A028347D10007639D8 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BA5CA19F28347D10007639D8 /* Settings.bundle */; };
 		BA762787282D0E6D00088B52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA762786282D0E6D00088B52 /* AppDelegate.swift */; };
 		BA762789282D0E6D00088B52 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA762788282D0E6D00088B52 /* SceneDelegate.swift */; };
 		BA76278B282D0E6D00088B52 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA76278A282D0E6D00088B52 /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		BA150EED28326284009F06BD /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		BA5CA19F28347D10007639D8 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		BA762783282D0E6D00088B52 /* iQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA762786282D0E6D00088B52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA762788282D0E6D00088B52 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				BABE547E282D9757003B5E3A /* AnswerViewController.swift */,
 				BABE5480282D9774003B5E3A /* FinishedViewController.swift */,
 				BA150EED28326284009F06BD /* Question.swift */,
+				BA5CA19F28347D10007639D8 /* Settings.bundle */,
 			);
 			path = iQuiz;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA5CA1A028347D10007639D8 /* Settings.bundle in Resources */,
 				BA762793282D0E6E00088B52 /* LaunchScreen.storyboard in Resources */,
 				BA762790282D0E6E00088B52 /* Assets.xcassets in Resources */,
 				BA76278E282D0E6D00088B52 /* Main.storyboard in Resources */,
