@@ -13,7 +13,7 @@ var questionIndex: Int = 0
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let getQuestionUrl = UserDefaults.standard.string(forKey: "question_url") ?? "https://tednewardsandbox.site44.com/questions.json"
-
+    
     var defaultSubjectDict: [Subject] = [
             Subject(subject: "Science!",
                     description: "Because SCIENCE!",
@@ -26,10 +26,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                                     "A band that hasn't yet been discovered",
                                     "Fire! Fire! Fire! heh-heh"
                                     ]
-                                ),
-                        Question(text: "If y = 3x + 12 and y = 5, what is x?",
-                                answer: "4",
-                                choices: ["7/3", "3/7", "-7", "-7/3"])
+                                )
                     ]
             ),
             Subject(subject: "Marvel Super Heroes",
@@ -91,7 +88,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         subjectTable.dataSource = self
         if UserDefaults.standard.string(forKey: "question_url") == nil {
             UserDefaults.standard.set(getQuestionUrl, forKey: "question_url")
-            fetchAndSaveQuestions(getQuestionUrl)
         }
         buildQuestions()
     }
@@ -144,19 +140,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func fetchAndSaveQuestions(_ url: String) {
         guard let url = URL(string: url) else { return }
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if response == nil {
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Error", message: "No response received", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    return
+                }
+            }
             if response != nil {
                 if let httpResponse = response as? HTTPURLResponse {
                     if httpResponse.statusCode != 200 {
-                        let alert = UIAlertController(title: "Error", message: "Something is wrong with the network", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: "Error", message: "Connection error: \(httpResponse.statusCode)", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
+                        }
                         return
                     }
                 }
             }
             if error != nil {
                 DispatchQueue.main.async {
-                    let alert = UIAlertController(title: "Error", message: "Unable to fetch the data", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Error", message: "An error has occurred while fetching data", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 }
@@ -168,10 +174,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         let archiveURL = documentsDirectory.appendingPathComponent("questions.json")
                         let jsonData = try JSONSerialization.data(withJSONObject: jsonResult, options: JSONSerialization.WritingOptions.prettyPrinted)
                         try jsonData.write(to: archiveURL)
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: "Success", message: "Questions saved successfully", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
+                        }
                     } catch {
-                        let alert = UIAlertController(title: "Error", message: "Invalid URL", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
+                        DispatchQueue.main.async {
+                            let alert = UIAlertController(title: "Error", message: "The URL is invalid", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            self.present(alert, animated: true, completion: nil)
+                        }
                     }
                 }
             }
@@ -194,7 +207,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                                           description: (jsonResult[i] as AnyObject)["desc"] as! String,
                                           questions: [])
                     for j in 0..<((jsonResult[i] as AnyObject)["questions"] as! Array<Any>).count {
-                        let question =  Question(text: (((jsonResult[i] as AnyObject)["questions"] as AnyObject)[j] as AnyObject)["text"] as! String,
+                        let question = Question(text: (((jsonResult[i] as AnyObject)["questions"] as AnyObject)[j] as AnyObject)["text"] as! String,
                                                  answer: (((jsonResult[i] as AnyObject)["questions"] as AnyObject)[j] as AnyObject)["answer"] as! String,
                                                  choices: (((jsonResult[i] as AnyObject)["questions"] as AnyObject)[j] as AnyObject)["answers"] as! [String])
                         subject.questions.append(question)
