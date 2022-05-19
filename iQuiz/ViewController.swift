@@ -12,8 +12,6 @@ var questionIndex: Int = 0
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    let getQuestionUrl = UserDefaults.standard.string(forKey: "question_url") ?? "https://tednewardsandbox.site44.com/questions.json"
-
     var subjectDict: [Subject] = []
 
     @IBOutlet weak var subjectTable: UITableView!
@@ -24,9 +22,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         subjectTable.delegate = self
         subjectTable.dataSource = self
         if UserDefaults.standard.string(forKey: "question_url") == nil {
-            UserDefaults.standard.set(getQuestionUrl, forKey: "question_url")
+            UserDefaults.standard.set("https://tednewardsandbox.site44.com/questions.json", forKey: "question_url")
         }
         buildQuestions()
+        subjectTable.refreshControl = UIRefreshControl()
+        subjectTable.refreshControl?.addTarget(self,
+                                               action: #selector(didPullToRefresh),
+                                               for: .valueChanged)
+    }
+    
+    @objc private func didPullToRefresh() {
+        fetchAndSaveQuestions((UserDefaults.standard.string(forKey: "question_url")!))
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -79,7 +85,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if response == nil {
                 DispatchQueue.main.async {
                     let alert = UIAlertController(title: "Error", message: "No response received", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(_) in
+                        self.subjectTable.refreshControl?.endRefreshing()
+                    }))
                     self.present(alert, animated: true, completion: nil)
                     return
                 }
@@ -89,7 +97,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     if httpResponse.statusCode != 200 {
                         DispatchQueue.main.async {
                             let alert = UIAlertController(title: "Error", message: "Connection error: \(httpResponse.statusCode)", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(_) in
+                                self.subjectTable.refreshControl?.endRefreshing()
+                            }))
                             self.present(alert, animated: true, completion: nil)
                         }
                         return
@@ -99,7 +109,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if error != nil {
                 DispatchQueue.main.async {
                     let alert = UIAlertController(title: "Error", message: "An error has occurred while fetching data", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(_) in
+                        self.subjectTable.refreshControl?.endRefreshing()
+                    }))
                     self.present(alert, animated: true, completion: nil)
                 }
             } else {
@@ -113,6 +125,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         DispatchQueue.main.async {
                             let alert = UIAlertController(title: "Success", message: "Questions saved successfully", preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(_) in
+                                self.subjectTable.refreshControl?.endRefreshing()
                                 self.buildQuestions()
                             }))                            
                             self.present(alert, animated: true, completion: nil)
@@ -120,7 +133,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     } catch {
                         DispatchQueue.main.async {
                             let alert = UIAlertController(title: "Error", message: "The URL is invalid", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(_) in
+                                self.subjectTable.refreshControl?.endRefreshing()
+                            }))
                             self.present(alert, animated: true, completion: nil)
                         }
                     }

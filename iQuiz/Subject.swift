@@ -31,8 +31,8 @@ let defaultSubjectDict: [Subject] = [
                                 "A magical reaction given to us by God",
                                 "A band that hasn't yet been discovered",
                                 "Fire! Fire! Fire! heh-heh"
-                                ]
-                            )
+                            ]
+                    )
                 ]
         ),
         Subject(subject: "Marvel Super Heroes",
@@ -45,7 +45,7 @@ let defaultSubjectDict: [Subject] = [
                                 "Obadiah Stane",
                                 "A rock hit by Megadeth",
                                 "Nobody knows"
-                                ]
+                             ]
                     ),
                     Question(text: "Who founded the X-Men?",
                              answer: "2",
@@ -54,7 +54,7 @@ let defaultSubjectDict: [Subject] = [
                                     "Professor X",
                                     "The X-Institute",
                                     "Erik Lensherr"
-                                    ]
+                             ]
                     ),
                     Question(text: "How did Spider-Man get his powers?",
                              answer: "1",
@@ -63,7 +63,7 @@ let defaultSubjectDict: [Subject] = [
                                 "He ate a radioactive spider",
                                 "He is a radioactive spider",
                                 "He looked at a radioactive spider"
-                                ]
+                             ]
                     )
                 ]
         ),
@@ -77,7 +77,7 @@ let defaultSubjectDict: [Subject] = [
                                 "22",
                                 "An irrational number",
                                 "Nobody knows"
-                                ]
+                            ]
                     )
                 ]
         )

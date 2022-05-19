@@ -78,12 +78,12 @@
 				BA76278F282D0E6E00088B52 /* Assets.xcassets */,
 				BA762791282D0E6E00088B52 /* LaunchScreen.storyboard */,
 				BA762794282D0E6E00088B52 /* Info.plist */,
+				BA5CA19F28347D10007639D8 /* Settings.bundle */,
 				BABE547C282D9746003B5E3A /* QuestionViewController.swift */,
 				BABE547E282D9757003B5E3A /* AnswerViewController.swift */,
 				BABE5480282D9774003B5E3A /* FinishedViewController.swift */,
 				BA150EED28326284009F06BD /* Question.swift */,
 				BAA6AEE328350DB700C4C681 /* Subject.swift */,
-				BA5CA19F28347D10007639D8 /* Settings.bundle */,
 			);
 			path = iQuiz;
 			sourceTree = "<group>";
