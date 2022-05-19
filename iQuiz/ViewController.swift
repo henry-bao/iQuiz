@@ -13,69 +13,6 @@ var questionIndex: Int = 0
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     let getQuestionUrl = UserDefaults.standard.string(forKey: "question_url") ?? "https://tednewardsandbox.site44.com/questions.json"
-    
-    let defaultSubjectDict: [Subject] = [
-            Subject(subject: "Science!",
-                    description: "Because SCIENCE!",
-                    questions: [
-                        Question(text: "What is fire?",
-                                answer: "1",
-                                choices: [
-                                    "One of the four classical elements",
-                                    "A magical reaction given to us by God",
-                                    "A band that hasn't yet been discovered",
-                                    "Fire! Fire! Fire! heh-heh"
-                                    ]
-                                )
-                    ]
-            ),
-            Subject(subject: "Marvel Super Heroes",
-                    description: "Avengers, Assemble!",
-                    questions: [
-                        Question(text: "Who is Iron Man?",
-                                 answer: "1",
-                                 choices: [
-                                    "Tony Stark",
-                                    "Obadiah Stane",
-                                    "A rock hit by Megadeth",
-                                    "Nobody knows"
-                                    ]
-                        ),
-                        Question(text: "Who founded the X-Men?",
-                                 answer: "2",
-                                 choices: [
-                                        "Tony Stark",
-                                        "Professor X",
-                                        "The X-Institute",
-                                        "Erik Lensherr"
-                                        ]
-                        ),
-                        Question(text: "How did Spider-Man get his powers?",
-                                 answer: "1",
-                                 choices:[
-                                    "He was bitten by a radioactive spider",
-                                    "He ate a radioactive spider",
-                                    "He is a radioactive spider",
-                                    "He looked at a radioactive spider"
-                                    ]
-                        )
-                    ]
-            ),
-            Subject(subject: "Mathematics",
-                    description: "How much do you know about the body, space, and nature?",
-                    questions: [
-                        Question(text: "What is 2+2?",
-                                answer: "1",
-                                choices: [
-                                    "4",
-                                    "22",
-                                    "An irrational number",
-                                    "Nobody knows"
-                                    ]
-                        )
-                    ]
-            )
-    ]
 
     var subjectDict: [Subject] = []
 
@@ -125,7 +62,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             UserDefaults.standard.set(textField?.text, forKey: "question_url")
             self.fetchAndSaveQuestions((textField?.text)!)
-            self.buildQuestions()
         }))
         self.present(alert, animated: true, completion: nil)
     }
@@ -176,7 +112,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         try jsonData.write(to: archiveURL)
                         DispatchQueue.main.async {
                             let alert = UIAlertController(title: "Success", message: "Questions saved successfully", preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {(_) in
+                                self.buildQuestions()
+                            }))                            
                             self.present(alert, animated: true, completion: nil)
                         }
                     } catch {
