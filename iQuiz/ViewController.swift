@@ -14,7 +14,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     let getQuestionUrl = UserDefaults.standard.string(forKey: "question_url") ?? "https://tednewardsandbox.site44.com/questions.json"
     
-    var defaultSubjectDict: [Subject] = [
+    let defaultSubjectDict: [Subject] = [
             Subject(subject: "Science!",
                     description: "Because SCIENCE!",
                     questions: [
@@ -208,8 +208,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                                           questions: [])
                     for j in 0..<((jsonResult[i] as AnyObject)["questions"] as! Array<Any>).count {
                         let question = Question(text: (((jsonResult[i] as AnyObject)["questions"] as AnyObject)[j] as AnyObject)["text"] as! String,
-                                                 answer: (((jsonResult[i] as AnyObject)["questions"] as AnyObject)[j] as AnyObject)["answer"] as! String,
-                                                 choices: (((jsonResult[i] as AnyObject)["questions"] as AnyObject)[j] as AnyObject)["answers"] as! [String])
+                                                answer: (((jsonResult[i] as AnyObject)["questions"] as AnyObject)[j] as AnyObject)["answer"] as! String,
+                                                choices: (((jsonResult[i] as AnyObject)["questions"] as AnyObject)[j] as AnyObject)["answers"] as! [String])
                         subject.questions.append(question)
                     }
                     newSubjectDict.append(subject)
